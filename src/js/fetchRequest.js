@@ -14,6 +14,5 @@ export const fetchImgsData = async (data, page) => {
     page: page,
   });
 
-  const response = await fetch(`${BASE_LINK}?${searchParams}`);
-  return await response.json();
+  return (await axios.get(`${BASE_LINK}?${searchParams}`)).data;
 };
