@@ -18,7 +18,7 @@ const observer = new IntersectionObserver(async entries => {
 
   if (!entry.isIntersecting || !cardsArr.length) return;
 
-  if (cardsArr.length > totalHits) {
+  if (cardsArr.length >= totalHits) {
     Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
@@ -69,6 +69,14 @@ searchFormEl.addEventListener('submit', async event => {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+      return;
+    }
+
+    if (imgArr.length >= totalHits) {
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
+      return;
     }
   } catch (error) {
     console.log(error.message);
